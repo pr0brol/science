@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class AppController {
+public class EmployeeController {
 
     @Autowired
     private AppService appService;
@@ -17,6 +17,11 @@ public class AppController {
     public String index(Model model){
         appService.showSimplePage(model);
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String showLoginPage(){
+        return "login_page";
     }
 
     @GetMapping("/dep/{id}")

@@ -16,4 +16,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Query("select e from Employee e where e.department_id = ?1")
     List<Employee> findByDepartmentId(Long depId);
 
+    @Query("select e from Employee e where e.lastName = ?1")
+    Employee findOneByName(String name);
+
 }
