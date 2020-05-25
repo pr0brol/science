@@ -34,10 +34,10 @@ CREATE TABLE roles (
 
 INSERT INTO roles (name)
 VALUES
-  ('EMPLOYEE'),
-  ('TABELKEEPER'),
-  ('DEPARTMENT_ADMIN'),
-  ('EMPLOYEES_ADMIN');
+  ('ROLE_EMPLOYEE'),
+  ('ROLE_TABELKEEPER'),
+  ('ROLE_DEPARTMENT_ADMIN'),
+  ('ROLE_EMPLOYEES_ADMIN');
 
 DROP TABLE IF EXISTS employees;
 CREATE TABLE employees (
@@ -106,23 +106,3 @@ VALUES
 (2,'4.02.1998', 'J'),
 (2,'5.02.1998', 'H'),
 (2,'6.02.1998', 'J');
-
---
---DROP TABLE IF EXISTS products_images;
---CREATE TABLE products_images (
---  id bigserial          PRIMARY KEY,
---  product_id            BIGINT,
---  path                  VARCHAR(255),
---  FOREIGN KEY (product_id) REFERENCES products(id));
---
---INSERT INTO products_images (product_id, path) VALUES
---(1, 'img_1.jpg'),
---(2, 'img_1.jpg'),
---(3, 'img_1.jpg'),
---(4, 'img_1.jpg'),
---(5, 'img_1.jpg'),
---(6, 'img_1.jpg'),
---(7, 'img_1.jpg'),
---(8, 'img_1.jpg'),
---(9, 'img_1.jpg'),
---(10, 'img_1.jpg');

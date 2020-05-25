@@ -11,7 +11,6 @@ import java.sql.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "calendar")
 public class Calendar {
 
@@ -19,7 +18,6 @@ public class Calendar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-
 
     @Column(insertable = false, updatable = false)
     private Long employee_id;
@@ -34,4 +32,16 @@ public class Calendar {
     @Column
     private String status;
 
+    public Calendar(Long employee_id, Date day, String status) {
+        this.employee_id = employee_id;
+        this.day = day;
+        this.status = status;
+    }
+
+    public Calendar(Long employee_id, Employee employee, Date day, String status) {
+        this.employee_id = employee_id;
+        this.employee = employee;
+        this.day = day;
+        this.status = status;
+    }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Employee {
     private String lastName;
 
     @Column
-    private String birthday;
+    private Date birthday;
 
     @Column
     private int age;
@@ -61,7 +62,9 @@ public class Employee {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Calendar> calendars;
+
+
 
 }

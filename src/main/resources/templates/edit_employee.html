@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="Редактирование"/>
+    <link rel="stylesheet" th:href="@{../static/css/stylesheet.css}">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+<div th:replace="~{navigation}"/>
+
+<div class="container">
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Дата рождения</th>
+                <th>Возраст</th>
+                <th>Удалённая работа</th>
+                <th>Адрес проживания</th>
+                <th>Должность</th>
+                <th>Департамент</th>
+                <th>Сохранить</th>
+                <th>Удалить</th>
+            </tr>
+            </thead>
+            <tbody class="table">
+            <form th:action="@{/edit_success}" th:object="${employee}" method="POST">
+                <input type="hidden" name="id" th:value="${employee.id}">
+                <td>
+                    <input type="text" name="firstName" th:value="${employee.firstName}">
+                </td>
+                <td>
+                    <input type="text" name="lastName" th:value="${employee.lastName}">
+                </td>
+                <td>
+                    <input type="date" name="birthday" th:value="${employee.birthday}">
+                </td>
+                <td>
+                    <input type="number" name="age" th:value="${employee.age}">
+                </td>
+                <td>
+                    <input type="checkbox" name="remote_work" th:value="${employee.remote_work}">
+                </td>
+                <td>
+                    <input type="text" name="address" th:value="${employee.address}">
+                </td>
+                <td>
+                    <select name="position">
+                        <option th:each="position : ${positions}" th:text="${position.title}"
+                                th:value="${position.id}"/>
+                    </select>
+                </td>
+                <td>
+                    <select name="department">
+                        <option th:each="department : ${departments}" th:text="${department.title}"
+                                th:value="${department.id}"/>
+                    </select>
+                </td>
+                <input type="hidden" name="password" th:value="${employee.password}">
+                <td>
+                    <input type="submit" value="Сохранить">
+                </td>
+                <td>
+                    <a th:href="@{'/delete/employee/' + ${employee.id}}" class="month"
+                       th:text="Удалить"/>
+                </td>
+
+            </form>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

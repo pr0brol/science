@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="НАУКА"/>
+
+    <style>
+        .department {
+            float: left;
+            border: 2px solid #ccc;
+        }
+        .calendar {
+            float: right;
+            border: 2px solid #ccc;
+        }
+        .month {
+            border: 1px solid #eee;
+        }
+        .container {
+            margin-top: 30px;
+            float: left;
+            display: flex;
+        }
+
+
+
+    </style>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div th:replace="~{navigation}"/>
+<div class="container">
+
+
+    <div class="calendar">
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Должность</th>
+                <th>Удалённая работа</th>
+                <th>Выберите дату</th>
+                <th>Выберите статус</th>
+                <th>Действие</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${employee.firstName} + ' ' + ${  employee.lastName}"/>
+                <td th:text="${employee.position.title}"/>
+                <td th:text="${employee.remote_work}"/>
+                <form th:action="@{/calendar_success}" th:object="${calendar}" method="POST">
+                    <input type="hidden" name="id" th:value="${employee.id}"/>
+                    <td>
+                        <input type="date" name="calendar">
+                    </td>
+                    <td>
+                        <select name="status">
+                            <option th:each="m : ${T(com.example.science.enums.Mark).values()}" th:text="${m}"
+                                    th:value="${m}"/>
+                        </select>
+                    </td>
+
+                    <td>
+                        <input type="submit" value="Добавить">
+                    </td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

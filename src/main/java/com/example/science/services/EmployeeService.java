@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,6 +49,28 @@ public class EmployeeService implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+    }
+
+    public List<Employee> findAll(){
+        return (List<Employee>) employeeRepository.findAll();
+    }
+
+    public Optional<Employee> findById(Long id){
+        return employeeRepository.findById(id);
+    }
+
+    public Employee save(Employee employee){
+        return employeeRepository.save(employee);
+    }
+
+    public Employee add(Employee employee){
+        String password = passwordEncoder.encode(employee.getPassword());
+        employee.setPassword(password);
+        return save(employee);
+    }
+
+    public void deleteEmployee(Long id){
+        employeeRepository.deleteById(id);
     }
 
 }

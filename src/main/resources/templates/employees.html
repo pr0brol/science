@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="Редактирование"/>
+    <link rel="stylesheet" th:href="@{../static/css/stylesheet.css}">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+<div th:replace="~{navigation}"/>
+
+<div class="container">
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Дата рождения</th>
+                <th>Возраст</th>
+                <th>Должность</th>
+                <th>Удалённая работа</th>
+                <th>Адрес проживания</th>
+                <th>Редактировать</th>
+            </tr>
+            </thead>
+            <tbody class="table">
+            <tr th:each="employee : ${employees}">
+                <th th:text="${employee.firstName}"/>
+                <th th:text="${employee.lastName}"/>
+                <th th:text="${employee.birthday}"/>
+                <th th:text="${employee.age}"/>
+                <th th:text="${employee.position.title}"/>
+                <th th:text="${employee.remote_work}"/>
+                <th th:text="${employee.address}"/>
+                <th>
+                    <a th:href="@{'/edit/employee/' + ${employee.id}}" class="btn btn-outline-secondary"
+                       th:text="Редактировать"/>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/add/employee}" class="btn btn-outline-secondary" th:text="Добавить"/>
+    </div>
+
+</div>
+
+</body>
+</html>

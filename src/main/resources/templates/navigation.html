@@ -33,6 +33,23 @@
                     </form>
                 </li>
 
+
+                <li sec:authorize="hasAnyRole('TABELKEEPER')" class="nav-item">
+                    <a th:href="@{/add/mark}" class="btn btn-outline-secondary" th:text="Добавить"/>
+                </li>
+
+                <li sec:authorize="hasAnyRole('DEPARTMENT_ADMIN')" class="nav-item">
+                    <a th:href="@{/edit/department}" class="btn btn-outline-secondary" th:text="Редактировать"/>
+                </li>
+
+                <li sec:authorize="hasAnyRole('EMPLOYEES_ADMIN')" class="nav-item">
+                    <a th:href="@{/employee}" class="btn btn-outline-secondary" th:text="Сотрудник"/>
+                </li>
+
+                <li class="nav-item">
+                    <a th:href="@{/}" class="btn btn-outline-secondary" th:text="Главная"/>
+                </li>
+
             </ul>
         </div>
     </nav>

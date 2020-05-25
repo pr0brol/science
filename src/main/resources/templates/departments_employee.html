@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="НАУКА"/>
+
+    <style>
+        .department {
+            float: left;
+            border: 2px solid #ccc;
+        }
+        .calendar {
+            float: right;
+            border: 2px solid #ccc;
+        }
+        .month {
+            border: 1px solid #eee;
+        }
+        .container {
+            margin-top: 30px;
+            float: left;
+            display: flex;
+        }
+
+
+
+
+
+    </style>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div th:replace="~{navigation}"/>
+<div class="container">
+
+
+    <div class="department">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th th:text="Редактирование"/>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="department : ${departments}">
+                <td>
+                    <a th:href="@{'/employee/department/' + ${department.id}}" class="month"
+                       th:text="${department.title}"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
